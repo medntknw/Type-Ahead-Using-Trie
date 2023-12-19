@@ -14,7 +14,7 @@ Basics of React, Flask, Singleton design pattern, Trie data structure.
 3. Clone repo `git clone <repo>`
 4. cd Type-Ahead-Using-Trie
 5. Run flask server `python app.py`
-6. Run react app `cd frontend && npm run build && npm run start`
+6. Run react app `cd frontend && npm run start`
 7. Visit http://localhost:3000
 8. Play around!
 
@@ -24,9 +24,9 @@ Basics of React, Flask, Singleton design pattern, Trie data structure.
   npm: Packages used by npm are installed globally. You have to care about pollution in the long term.
 
 - **How to save state of a singleton object in flask?** <br/>
-If you create a **singleton class** and initialize it in an API which adds to it and reads from it, the state will not persist across requests in Flask by default.<br/>
+If you create a **singleton class** [Trie] and initialize it in an API which adds to it and reads from it, the state will not persist across requests in Flask by default.<br/>
 However, you can use **global variables** to store the state of the singleton class and access it across requests<br/>
-With this implementation, the state of `my_singleton` will persist across requests because it is stored as a global variable.<br/>
+With this implementation, the state of `Trie` will persist across requests because it is stored as a global variable.<br/>
 However, keep in mind that using global variables can lead to issues with concurrency and thread safety.<br/>
 If you need to ensure thread safety, you can use Flask’s `g` object or a database to store the state of your singleton class.<br/>
   - Related Threads:
