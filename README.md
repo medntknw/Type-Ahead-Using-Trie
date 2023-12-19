@@ -9,13 +9,14 @@ Also we are assuming you have working python installation.
 
 ## Use it
 1. Clone repo `git clone <repo>`
-2. cd Type-Ahead-Using-Trie
-3. Create a virtualenv`python -m venv virt`
-4. Install requirements`pip install -r requirements.txt`
-5. Run flask server `python app.py`
-6. Run react app `cd frontend && npm run start`
-7. Visit http://localhost:3000
-8. Play around!
+2. `cd Type-Ahead-Using-Trie`
+3. Create a virtualenv `python -m venv virt`
+4. Install requirements `pip install -r requirements.txt`
+5. `cd type_ahead`
+6. Run flask server `python app.py`
+7. Run react app `cd frontend && npm run start`
+8. Visit http://localhost:3000
+9. Play around!
 
 ## KT
 - **Difference between npm and npx?** <br />
