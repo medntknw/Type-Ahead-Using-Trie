@@ -5,14 +5,13 @@ This is a development project to help understand the basic working around type a
 
 ## Pre-requisites
 Basics of React, Flask, Singleton design pattern, Trie data structure.
+Also we are assuming you have working python installation.
 
 ## Use it
-1. Create a virtualenv
-   `python -m venv virt`
-2. Install requirements
-   `pip install -r requirements.txt`
-3. Clone repo `git clone <repo>`
-4. cd Type-Ahead-Using-Trie
+1. Clone repo `git clone <repo>`
+2. cd Type-Ahead-Using-Trie
+3. Create a virtualenv`python -m venv virt`
+4. Install requirements`pip install -r requirements.txt`
 5. Run flask server `python app.py`
 6. Run react app `cd frontend && npm run start`
 7. Visit http://localhost:3000
