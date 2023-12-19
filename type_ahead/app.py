@@ -1,15 +1,10 @@
 from flask import Flask
-from flask import send_from_directory
 from flask import request
 from trie import Trie
 
-app = Flask(__name__, static_folder='frontend/build')
+app = Flask(__name__)
 
 trie = Trie()
-
-@app.route("/")
-def home():
-    return send_from_directory(app.static_folder, 'index.html')
 
 @app.route("/api/suggest", methods=['GET', 'POST'])
 def suggest():
