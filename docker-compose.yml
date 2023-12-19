@@ -2,31 +2,18 @@
 version: "3"
 services:
   frontend:
-    # build:
-    #   context: ./frontend
-    #   dockerfile: ./frontend/Dockerfile
+    build: ./type_ahead/frontend
     image: frontend:latest
     expose:
       - "3000"
     # {HOST PORT}: {CONTAINER PORT}
     ports:
       - "3000:3000"
-    links:
-      - backend
-    networks:
-      - app-test
+
   backend:
-    # context: ./backend
-    # dockerfile: ./backend/Dockerfile
+    build: ./type_ahead/backend
     image: backend:latest
-    container_name: backend
     expose:
       - "5000"
-    networks:
-      - app-test
     ports:
       - "5001:5000"
-
-networks:
-    app-test:
-        driver: bridge
