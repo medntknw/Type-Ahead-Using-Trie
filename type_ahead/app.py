@@ -5,6 +5,7 @@ from trie import Trie
 
 app = Flask(__name__, static_folder='frontend/build')
 
+trie = Trie()
 
 @app.route("/")
 def home():
@@ -12,7 +13,6 @@ def home():
 
 @app.route("/api/suggest", methods=['GET', 'POST'])
 def suggest():
-    trie = Trie()
     print('Using trie: %s' % trie)
     if request.method == 'GET':
         query = request.values.get('q')
