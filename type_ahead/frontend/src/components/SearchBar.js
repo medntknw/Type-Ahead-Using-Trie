@@ -7,7 +7,7 @@ function SearchBar ({ setResults }){
   const [input, setInput] = useState("");
 
   const fetchData = (value) => {
-    fetch("https://localhost.com/suggest")
+    fetch(`/api/suggest?q=${value}`)
       .then((response) => response.json())
       .then((json) => {
         const results = json.suggest

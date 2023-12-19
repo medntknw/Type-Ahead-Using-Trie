@@ -10,9 +10,11 @@ app = Flask(__name__, static_folder='frontend/build')
 def home():
     return send_from_directory(app.static_folder, 'index.html')
 
-@app.route("/suggest")
+@app.route("/api/suggest")
 def about():
     query = request.values.get('q')
+    if not query:
+        return {'suggest': []}
     trie = Trie()
     suggestions = trie.type_ahead(query)
     return {'suggest': suggestions}
