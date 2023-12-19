@@ -4,19 +4,18 @@
 This is a development project to help understand the basic working around type ahead search using Trie.
 
 ## Pre-requisites
-Basics of React, Flask, Singleton design pattern, Trie data structure.
-Also we are assuming you have working python installation.
+Basics of Docker, React, Flask, Singleton design pattern, Trie data structure.
+
+## Setup Pre-requisites
+Working installation of docker-compose
+To check run
+`docker-compose --version`
 
 ## Use it
-1. Clone repo `git clone <repo>`
+1. `git clone <repo>`
 2. `cd Type-Ahead-Using-Trie`
-3. Create a virtualenv `python -m venv virt`
-4. Install requirements `pip install -r requirements.txt`
-5. `cd type_ahead`
-6. Run flask server `python app.py`
-7. Run react app `cd frontend && npm run start`
-8. Visit http://localhost:3000
-9. Play around!
+3. `docker compose up -d`
+4. Play around at http://localhost:3000
 
 ## KT
 - **Difference between npm and npx?** <br />
@@ -33,4 +32,51 @@ If you need to ensure thread safety, you can use Flask’s `g` object or a dat
     1. https://stackoverflow.com/questions/30822162/python-flask-persistent-object-between-requests
     2. https://stackoverflow.com/questions/33780727/why-app-context-in-flask-not-a-singleton-for-an-app
     3. https://stackoverflow.com/questions/39261260/flask-session-variable-not-persisting-between-requests
-   
+
+- **How to link the two services running in docker compose?**
+  In this scenario,<br/>
+  - **Backend**<br/>
+    We have a backend flask app running. Make sure it runs on host="0.0.0.0" (Default is 127.0.0.1) this will make the server available externally as well<br/>
+    `app.run(host="0.0.0.0") in app.py`<br/>
+  - **Frontend**<br/>
+    We have also set proxy in frontend/package.json this will tell the development server to proxy any unknown requests to your API server in development, add a proxy field to your        package.json, for example:<br/>
+    `"proxy": "http://localhost:5000"`<br/>
+    **Note:**<br/>
+    This is only for development use case and only works with `npm run start`. Ideally we can create our own proxy.<br/>
+  - **Docker**<br/>
+    - Links
+      Links allow you to define extra aliases by which a service is reachable from another service. They are not required to enable services to communicate. By default, any service          can reach any other service at that service's name
+      In our case
+      ```
+      services:
+      frontend:
+        image: frontend:latest
+        expose:
+          - "3000"
+        # {HOST PORT}: {CONTAINER PORT}
+        ports:
+          - "3000:3000"
+        links:
+          - backend
+        networks:
+          - app-test
+      backend:
+        image: backend:latest
+        container_name: backend
+        expose:
+          - "5000"
+        ports:
+          - "5001:5000"
+  
+      ```
+      backend service is available to frontend service at hostname backend
+    - Custom Networks
+      Instead of just using the default app network, you can specify your own networks with the top-level networks key. This lets you create more complex topologies and specify custom       network drivers and options. You can also use it to connect services to externally-created networks which aren't managed by Compose.
+  
+      **PS: These two are not required for the working of our application to work and are just for FYI.**
+                
+  
+  
+  
+  
+  
