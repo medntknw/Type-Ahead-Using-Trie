@@ -44,7 +44,7 @@ If you need to ensure thread safety, you can use Flask’s `g` object or a dat
     **Note:**<br/>
     This is only for development use case and only works with `npm run start`. Ideally we can create our own proxy.<br/>
   - **Docker**<br/>
-    - Links
+    - Links<br/>
       Links allow you to define extra aliases by which a service is reachable from another service. They are not required to enable services to communicate. By default, any service          can reach any other service at that service's name
       In our case
       ```
@@ -69,8 +69,8 @@ If you need to ensure thread safety, you can use Flask’s `g` object or a dat
           - "5001:5000"
   
       ```
-      backend service is available to frontend service at hostname backend
-    - Custom Networks
+      backend service is available to frontend service at hostname backend<br/>
+    - Custom Networks<br/>
       Instead of just using the default app network, you can specify your own networks with the top-level networks key. This lets you create more complex topologies and specify custom       network drivers and options. You can also use it to connect services to externally-created networks which aren't managed by Compose.
   
       **PS: These two are not required for the working of our application to work and are just for FYI.**
