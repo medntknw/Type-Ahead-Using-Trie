@@ -24,6 +24,7 @@ class Trie(Singleton):
         for c in key:
             index = self._get_index(c)
             if not curr.children[index]:
+                print('Inserted character: %s at index %s' % (c, index))
                 new_node = TrieNode()
                 curr.children[index] = new_node
             curr = curr.children[index]
@@ -42,7 +43,9 @@ class Trie(Singleton):
         curr = self.root
         for c in prefix:
             index = self._get_index(c)
+            print('Inspecting character %s at index %s' % (c, index))
             if not curr.children[index]:
+                print('There is no node for character %s at index %s' % (c, index))
                 return False
             curr = curr.children[index]
         return True

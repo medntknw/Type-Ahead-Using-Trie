@@ -5,6 +5,7 @@ import "./SearchBar.css";
 
 function SearchBar ({ setResults }){
   const [input, setInput] = useState("");
+  const [addDisabled, setAddDisabled] = useState(false);
 
   const fetchData = (value) => {
     fetch(`/api/suggest?q=${value}`)
@@ -15,10 +16,32 @@ function SearchBar ({ setResults }){
       });
   };
 
+  const submitSearch = (value) => {
+    setAddDisabled(true);
+    fetch("/api/suggest", {
+    method: "post",
+    headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+        query: value
+    })
+    })
+    .then((response) => response.json())
+    .then((json) => {
+      setAddDisabled(false);
+    });
+  };
+
   const handleChange = (value) => {
     setInput(value);
     fetchData(value);
   };
+
+  const handleSubmit = (value) => {
+    submitSearch(value);
+  }
 
   return (
     <div className="input-wrapper">
@@ -28,6 +51,7 @@ function SearchBar ({ setResults }){
         value={input}
         onChange={(e) => handleChange(e.target.value)}
       />
+      <button disabled={addDisabled} type='submit' onClick={() => handleSubmit(input)}>Add</button>
     </div>
   );
 };
